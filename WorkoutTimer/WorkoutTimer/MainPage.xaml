@@ -13,7 +13,7 @@
     <StackLayout Padding="15, 15, 15, 15" BackgroundColor="{Binding BackgroundColor}">
         <StackLayout  VerticalOptions="StartAndExpand">
             <Label Text="Rest" FontSize="50" />
-            <Label Text="{Binding ElapsedTime}" FontSize="100" HorizontalOptions="Center" />
+            <Label Text="{Binding ElapsedTime}" FontSize="120" HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button Text="30s" Command="{Binding SetRestTimeCommand}" IsEnabled="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}">
                     <Button.CommandParameter>
