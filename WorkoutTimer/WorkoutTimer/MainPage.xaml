@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="WorkoutTimer.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="15, 15, 15, 15" BackgroundColor="{Binding BackgroundColor}">
+        <StackLayout  VerticalOptions="StartAndExpand">
+            <Label Text="Rest" FontSize="50" />
+            <Label Text="{Binding ElapsedTime}" FontSize="100" HorizontalOptions="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="30s" Command="{Binding SetRestTimeCommand}" IsEnabled="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}">
+                    <Button.CommandParameter>
+                        <x:Int32>30</x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Text="60s" Command="{Binding SetRestTimeCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>60</x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Text="90s" Command="{Binding SetRestTimeCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>90</x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Text="120s" Command="{Binding SetRestTimeCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>120</x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+            </StackLayout>
+            <Button x:Name="startButton" Text="Start" Command="{Binding StartTimerCommand}"/>
+            <Button x:Name="stopButton" Text="Stop" Command="{Binding StopTimerCommand}"/>
+        </StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label Text="Sets" FontSize="50" />
+            <Label Text="{Binding Sets}" FontSize="100" HorizontalOptions="Center"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button x:Name="increaseSetsButton" Text="+1" Command="{Binding IncreaseSetsCommand}"/>
+                <Button x:Name="decreaseSetsButton" Text="-1" Command="{Binding DecreaseSetsCommand}"/>
+                <Button x:Name="resetSetsButton" Text="Reset" xct:TouchEffect.LongPressCommand="{Binding ResetSetsCommand}" xct:TouchEffect.LongPressDuration="2000"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
