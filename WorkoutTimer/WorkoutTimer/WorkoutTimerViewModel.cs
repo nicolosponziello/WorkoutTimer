@@ -103,7 +103,10 @@ namespace WorkoutTimer
 
         private void DecreaseSets()
         {
-            Sets--;
+            if (Sets > 0)
+            {
+                Sets--;
+            }
         }
 
         private void SetRest(int rest)
@@ -120,6 +123,10 @@ namespace WorkoutTimer
 
         private void StartTimer()
         {
+            if (_isTimerRunning || ElapsedTime == 0)
+            {
+                return;
+            }
             _isTimerRunning = true;
             BackgroundColor = Color.Red;
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
