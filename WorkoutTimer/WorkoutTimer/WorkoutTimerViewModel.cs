@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Plugin.LocalNotification;
+using Plugin.LocalNotification.EventArgs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -75,7 +78,6 @@ namespace WorkoutTimer
             }
         }
 
-
         public WorkoutTimerViewModel() 
         {
             BackgroundColor = Color.Green;
@@ -88,6 +90,11 @@ namespace WorkoutTimer
             DecreaseSetsCommand = new Command(DecreaseSets);
             ResetSetsCommand = new Command(ResetSets);
             StopTimerCommand = new Command(StopTimer);
+        }
+
+        public void OnNotificationActionTapped(NotificationEventArgs e)
+        {
+
         }
 
         private void ResetSets()
@@ -136,6 +143,7 @@ namespace WorkoutTimer
                 {
                     _isTimerRunning = false;
                     BackgroundColor = Color.Green;
+                    SendEndTimerNotification();
                     Vibration.Vibrate(TimeSpan.FromSeconds(1));
                 }
                 return ElapsedTime > 0;
@@ -146,6 +154,22 @@ namespace WorkoutTimer
         {
             ElapsedTime = 0;
             _isTimerRunning = false;
+        }
+
+        private async void SendEndTimerNotification()
+        {
+            var notification = new NotificationRequest
+            {
+                NotificationId = 100,
+                Title = "Timer is up!",
+                Description = "",
+                ReturningData = "",
+                Schedule =
+                {
+                    NotifyTime = null
+                }
+            };
+            await LocalNotificationCenter.Current.Show(notification);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
