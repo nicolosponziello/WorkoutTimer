@@ -136,6 +136,7 @@ namespace WorkoutTimer
             }
             _isTimerRunning = true;
             BackgroundColor = Color.Red;
+            LocalNotificationCenter.Current.CancelAll();
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
                 ElapsedTime--;
@@ -143,8 +144,12 @@ namespace WorkoutTimer
                 {
                     _isTimerRunning = false;
                     BackgroundColor = Color.Green;
-                    SendEndTimerNotification();
+                    if (!App.IsForeground)
+                    {
+                        SendEndTimerNotification();
+                    }
                     Vibration.Vibrate(TimeSpan.FromSeconds(1));
+                    Sets++;
                 }
                 return ElapsedTime > 0;
             });
