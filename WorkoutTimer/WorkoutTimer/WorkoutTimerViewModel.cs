@@ -15,6 +15,7 @@ namespace WorkoutTimer
         private int _sets;
         private int _elapsedTime;
         private Color _bgColor;
+        private int _previousTime;
         public int Sets 
         {
             get => _sets;
@@ -84,6 +85,8 @@ namespace WorkoutTimer
             Sets = 0;
             _isTimerRunning = false;
             ElapsedTime = 0;
+            _previousTime = 0;
+
             SetRestTimeCommand = new Command<int>(SetRest);
             StartTimerCommand = new Command(StartTimer);
             IncreaseSetsCommand = new Command(IncreaseSets);
@@ -136,6 +139,7 @@ namespace WorkoutTimer
             }
             _isTimerRunning = true;
             BackgroundColor = Color.Red;
+            _previousTime = ElapsedTime;
             LocalNotificationCenter.Current.CancelAll();
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
@@ -150,8 +154,10 @@ namespace WorkoutTimer
                     }
                     Vibration.Vibrate(TimeSpan.FromSeconds(1));
                     Sets++;
+                    ElapsedTime = _previousTime;
+                    return false;
                 }
-                return ElapsedTime > 0;
+                return true;
             });
         }
 
