@@ -45,7 +45,7 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button x:Name="increaseSetsButton" Text="+1" Command="{Binding IncreaseSetsCommand}"/>
                 <Button x:Name="decreaseSetsButton" Text="-1" Command="{Binding DecreaseSetsCommand}"/>
-                <Button x:Name="resetSetsButton" Text="Reset" xct:TouchEffect.LongPressCommand="{Binding ResetSetsCommand}" xct:TouchEffect.LongPressDuration="2000"/>
+                <Button x:Name="resetSetsButton" Text="Reset" xct:TouchEffect.LongPressCommand="{Binding ResetSetsCommand}" xct:TouchEffect.LongPressDuration="1000"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>
