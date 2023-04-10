@@ -15,37 +15,37 @@
             <Label Text="Rest" FontSize="50" />
             <Label Text="{Binding ElapsedTime}" FontSize="120" HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="30s" Command="{Binding SetRestTimeCommand}" IsEnabled="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}">
+                <Button Text="30s" Style="{StaticResource buttonStyle}" Command="{Binding SetRestTimeCommand}" IsEnabled="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}">
                     <Button.CommandParameter>
                         <x:Int32>30</x:Int32>
                     </Button.CommandParameter>
                 </Button>
-                <Button Text="60s" Command="{Binding SetRestTimeCommand}">
+                <Button Style="{StaticResource buttonStyle}" Text="60s" Command="{Binding SetRestTimeCommand}">
                     <Button.CommandParameter>
                         <x:Int32>60</x:Int32>
                     </Button.CommandParameter>
                 </Button>
-                <Button Text="90s" Command="{Binding SetRestTimeCommand}">
+                <Button Style="{StaticResource buttonStyle}" Text="90s" Command="{Binding SetRestTimeCommand}">
                     <Button.CommandParameter>
                         <x:Int32>90</x:Int32>
                     </Button.CommandParameter>
                 </Button>
-                <Button Text="120s" Command="{Binding SetRestTimeCommand}">
+                <Button Text="120s" Style="{StaticResource buttonStyle}" Command="{Binding SetRestTimeCommand}">
                     <Button.CommandParameter>
                         <x:Int32>120</x:Int32>
                     </Button.CommandParameter>
                 </Button>
             </StackLayout>
-            <Button x:Name="startButton" Text="Start" Command="{Binding StartTimerCommand}"/>
-            <Button x:Name="stopButton" Text="Stop" Command="{Binding StopTimerCommand}"/>
+            <Button Style="{StaticResource buttonStyle}" x:Name="startButton" Text="Start" Command="{Binding StartTimerCommand}"/>
+            <Button x:Name="stopButton" Text="Stop" Command="{Binding StopTimerCommand}" Style="{StaticResource buttonStyle}"/>
         </StackLayout>
         <StackLayout VerticalOptions="FillAndExpand">
             <Label Text="Sets" FontSize="50" />
             <Label Text="{Binding Sets}" FontSize="100" HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button x:Name="increaseSetsButton" Text="+1" Command="{Binding IncreaseSetsCommand}"/>
-                <Button x:Name="decreaseSetsButton" Text="-1" Command="{Binding DecreaseSetsCommand}"/>
-                <Button x:Name="resetSetsButton" Text="Reset" xct:TouchEffect.LongPressCommand="{Binding ResetSetsCommand}" xct:TouchEffect.LongPressDuration="1000"/>
+                <Button Style="{StaticResource buttonStyle}" x:Name="increaseSetsButton" Text="+1" Command="{Binding IncreaseSetsCommand}"/>
+                <Button Style="{StaticResource buttonStyle}" x:Name="decreaseSetsButton" Text="-1" Command="{Binding DecreaseSetsCommand}"/>
+                <Button Style="{StaticResource buttonStyle}" x:Name="resetSetsButton" Text="Reset" xct:TouchEffect.LongPressCommand="{Binding ResetSetsCommand}" xct:TouchEffect.LongPressDuration="1000"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>
