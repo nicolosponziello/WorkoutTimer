@@ -87,7 +87,7 @@ namespace WorkoutTimer
             ElapsedTime = 0;
             _previousTime = 0;
 
-            SetRestTimeCommand = new Command<int>(SetRest);
+            //SetRestTimeCommand = new Command(SetRest);
             StartTimerCommand = new Command(StartTimer);
             IncreaseSetsCommand = new Command(IncreaseSets);
             DecreaseSetsCommand = new Command(DecreaseSets);
@@ -119,16 +119,9 @@ namespace WorkoutTimer
             }
         }
 
-        private void SetRest(int rest)
+        public void SetRest(int rest)
         {
-            if (_isTimerRunning)
-            {
-                ElapsedTime += rest;
-            }
-            else
-            {
-                ElapsedTime = rest;
-            }
+            ElapsedTime = rest;
         }
 
         private void StartTimer()

@@ -36,5 +36,11 @@ namespace WorkoutTimer
 
             base.OnDisappearing();
         }
+        
+        void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
+        {
+            int value = (int)args.NewValue;
+            _viewModel.SetRest(value);
+        }
     }
 }

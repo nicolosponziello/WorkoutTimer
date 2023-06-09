@@ -14,28 +14,7 @@
         <StackLayout  VerticalOptions="StartAndExpand">
             <Label Text="Rest" FontSize="50" />
             <Label Text="{Binding ElapsedTime}" FontSize="120" HorizontalOptions="Center" />
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="30s" Style="{StaticResource buttonStyle}" Command="{Binding SetRestTimeCommand}" IsEnabled="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}">
-                    <Button.CommandParameter>
-                        <x:Int32>30</x:Int32>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Style="{StaticResource buttonStyle}" Text="60s" Command="{Binding SetRestTimeCommand}">
-                    <Button.CommandParameter>
-                        <x:Int32>60</x:Int32>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Style="{StaticResource buttonStyle}" Text="90s" Command="{Binding SetRestTimeCommand}">
-                    <Button.CommandParameter>
-                        <x:Int32>90</x:Int32>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Text="120s" Style="{StaticResource buttonStyle}" Command="{Binding SetRestTimeCommand}">
-                    <Button.CommandParameter>
-                        <x:Int32>120</x:Int32>
-                    </Button.CommandParameter>
-                </Button>
-            </StackLayout>
+            <Slider Margin="10, 0, 10, 0" ThumbColor="Red" HorizontalOptions="FillAndExpand" Maximum="180" Minimum="30" ValueChanged="OnSliderValueChanged"/>
             <Button Style="{StaticResource buttonStyle}" x:Name="startButton" Text="Start" Command="{Binding StartTimerCommand}"/>
             <Button x:Name="stopButton" Text="Stop" Command="{Binding StopTimerCommand}" Style="{StaticResource buttonStyle}"/>
         </StackLayout>
