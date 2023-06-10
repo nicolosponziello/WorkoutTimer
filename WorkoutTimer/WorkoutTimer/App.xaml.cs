@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.LocalNotification;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +16,7 @@ namespace WorkoutTimer
             MainPage = new MainPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             IsForeground = true;
         }

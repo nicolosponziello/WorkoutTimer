@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.OS;
 using Plugin.LocalNotification;
 using Android.Content;
+using Android;
 
 namespace WorkoutTimer.Droid
 {
@@ -32,6 +33,17 @@ namespace WorkoutTimer.Droid
         {
             LocalNotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            const int id = 0;
+            string[] perms = { Manifest.Permission.PostNotifications };
+            if (CheckSelfPermission(Manifest.Permission.PostNotifications) == Permission.Denied)
+            {
+                RequestPermissions(perms, id);
+            }
         }
     }
 }
