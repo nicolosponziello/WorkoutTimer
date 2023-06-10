@@ -40,10 +40,10 @@ namespace WorkoutTimer
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int ElapsedTime 
+        private int ElapsedTime 
         {
             get => _elapsedTime;
-            private set
+            set
             {
                 if (value < 0)
                 {
@@ -53,8 +53,19 @@ namespace WorkoutTimer
                 {
                     _elapsedTime = value;
                 }
-                OnPropertyChanged(nameof(ElapsedTime));
+                OnPropertyChanged(nameof(ElapsedTimeString));
             }
+        }
+
+        public string ElapsedTimeString
+        {
+            get => ConvertTime(_elapsedTime);
+        }
+
+        private string ConvertTime(int elapsed)
+        {
+            var ts = TimeSpan.FromSeconds(elapsed);
+            return ts.Minutes.ToString().PadLeft(2, '0') + ":" + ts.Seconds.ToString().PadLeft(2, '0');
         }
 
         public Command<int> SetRestTimeCommand { get; private set; }
