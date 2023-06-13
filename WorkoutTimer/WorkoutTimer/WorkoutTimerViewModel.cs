@@ -1,10 +1,7 @@
 ﻿using Plugin.LocalNotification;
 using Plugin.LocalNotification.EventArgs;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
